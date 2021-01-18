@@ -24,7 +24,7 @@ module.exports = async function (cmd) {
     shell.exit(1); // 退出程序
   }
 
-  console.log('###### 开始部署 ######\n');
+  console.log(`###### ${deployEnv.name}开始部署 ######\n`);
 
   const date = dayjs().format('YYYY_MM_DD_HH_mm_ss');
   // 压缩打包后的文件夹
@@ -57,6 +57,6 @@ module.exports = async function (cmd) {
     console.log('部署完成命令执行完毕');
   }
 
-  console.log('###### 部署完成 ######');
+  console.log(`###### ${deployEnv.name}部署完成 ######\n`);
   shell.exit(0); // 部署完成，结束程序
 };
