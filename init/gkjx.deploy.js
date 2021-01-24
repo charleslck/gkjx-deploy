@@ -1,6 +1,7 @@
 module.exports = {
   default: {
     name: '全部环境',
+    withOutConfirm: true,
     webDir: '/opt/webApp',
     // buildCommands: 'npm run build',
     archiveDir: 'dist',

@@ -15,10 +15,12 @@ module.exports = async function (cmd) {
   const deployEnv = tools.deployConfig.checkEnv(cmd, 'deploy');
 
   // 初始化确认部署动作
-  await dialog.confirm(`请确认部署环境：${deployEnv.name}，输入'yes'以继续`, 'yes').catch(e =>{
-    console.log(chalk.red(`\n确认环境'${deployEnv.name}'时退出`));
-    shell.exit(1); 
-  })
+  if(!deployEnv.withOutConfirm){
+    await dialog.confirm(`请确认部署环境：${deployEnv.name}，输入'yes'以继续`, 'yes').catch(e =>{
+      console.log(chalk.red(`\n确认环境'${deployEnv.name}'时退出`));
+      shell.exit(1); 
+    })
+  }
   
 
   // 如果填写了打包命令就先打包

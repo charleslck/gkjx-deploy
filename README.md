@@ -74,6 +74,7 @@ module.exports = {
 | servers-username   |    服务器的用户名    | String | - | 是 |
 | servers-password   |    服务器的密码    | String | - | 是 |
 | servers-privateKey   |    服务器的密钥绝对路径    | String | - | 是 |
+| withOutConfirm      | 在开始部署前是否需要手动确认   | Boolean | true | 否 |
 | buildCommands    |    开始部署前在本机执行的打包命令    | String | - | 否 |
 | commandBeforeDeploy   |    当与服务器建立连接后执行的命令    | String | - | 否 |
 | commandAfterDeploy   |    当文件部署完成后执行的命令    | String | - | 否 |
