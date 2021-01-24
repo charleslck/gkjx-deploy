@@ -12,6 +12,7 @@
     "commander": "^6.1.0",
     "dayjs": "^1.8.36",
     "node-ssh": "^6.0.0",
+    "read": "^1.0.7",
     "shelljs": "^0.8.4"
   },
   "devDependencies": {},

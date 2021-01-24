@@ -1,6 +1,7 @@
 /* eslint-disable func-names */
 const fs = require('fs');
 const chalk = require('chalk');
+const dialog = require('../tools/dialog');
 const shell = require('shelljs');
 const dayjs = require('dayjs');
 const tools = require('../tools');
@@ -13,6 +14,13 @@ module.exports = async function (cmd) {
   // 检查配置文件中的部署环境
   const deployEnv = tools.deployConfig.checkEnv(cmd, 'deploy');
 
+  // 初始化确认部署动作
+  await dialog.confirm(`请确认部署环境：${deployEnv.name}，输入'yes'以继续`, 'yes').catch(e =>{
+    console.log(chalk.red(`\n确认环境'${deployEnv.name}'时退出`));
+    shell.exit(1); 
+  })
+  
+
   // 如果填写了打包命令就先打包
   if (deployEnv.buildCommands) {
     await exec(deployEnv.buildCommands);
@@ -24,7 +32,7 @@ module.exports = async function (cmd) {
     shell.exit(1); // 退出程序
   }
 
-  console.log(`###### ${deployEnv.name}开始部署 ######\n`);
+  console.log(`\n###### ${deployEnv.name}开始部署 ######`);
 
   const date = dayjs().format('YYYY_MM_DD_HH_mm_ss');
   // 压缩打包后的文件夹
@@ -57,6 +65,6 @@ module.exports = async function (cmd) {
     console.log('部署完成命令执行完毕');
   }
 
-  console.log(`###### ${deployEnv.name}部署完成 ######\n`);
+  console.log(`\n###### ${deployEnv.name}部署完成 ######\n`);
   shell.exit(0); // 部署完成，结束程序
 };

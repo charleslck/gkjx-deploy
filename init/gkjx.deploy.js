@@ -8,7 +8,7 @@ module.exports = {
     // commandBeforeDeploy: 'mkdir commandBeforeDeploy',
     // commandAfterDeploy: 'npm run start',
     servers: [{
-      host: '192.168.1.100',
+      host: '192.168.100.18',
       port: 22,
       username: 'root',
       password: '123',
