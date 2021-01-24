@@ -41,7 +41,10 @@ module.exports = async function (cmd) {
 
   // 连接服务器
   const sshGroup = new tools.SSHGroup(deployEnv.servers);
-  await sshGroup.connect();
+  await sshGroup.connect().catch(e =>{
+    console.log(chalk.red(`\n获取服务器授权时退出`));
+    shell.exit(1); 
+  });
 
   // 部署连接成功之后执行命令
   if (deployEnv.commandBeforeDeploy) {
