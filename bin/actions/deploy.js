@@ -16,7 +16,8 @@ module.exports = async function (cmd) {
 
   // 初始化确认部署动作
   if(!deployEnv.withOutConfirm === true){
-    await dialog.confirm(`请确认部署环境：${deployEnv.name}，输入'yes'以继续`, 'yes').catch(e =>{
+    let confirmTip = deployEnv.confirmTip || ''
+    await dialog.confirm(`请确认部署环境：${deployEnv.name}${confirmTip}，输入'yes'以继续`, 'yes').catch(e =>{
       console.log(chalk.red(`\n确认环境'${deployEnv.name}'时退出`));
       shell.exit(1); 
     })
@@ -42,7 +43,7 @@ module.exports = async function (cmd) {
   // 连接服务器
   const sshGroup = new tools.SSHGroup(deployEnv.servers);
   await sshGroup.connect().catch(e =>{
-    console.log(chalk.red(`\n获取服务器授权时退出`));
+    console.log(chalk.red(`\n获取服务器授权失败`));
     shell.exit(1); 
   });
 
