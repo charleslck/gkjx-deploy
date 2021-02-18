@@ -54,6 +54,14 @@ module.exports = async function (cmd) {
     console.log('连接成功命令执行完毕');
   }
 
+  // 如果清空当前文件夹下面的所有文件
+  if (deployEnv.clearWebDir === true) {
+    const clearCommand = 'rm -rf `ls | grep -v "dist-releases"`';
+    console.log('正在清理文件夹');
+    await tools.command.execCommand(sshGroup.connects, deployEnv, clearCommand);
+    console.log('文件夹清理完毕');
+  }
+
   // 将打包后的压缩包上传到服务器指定路径
   await tools.file.putFiles(sshGroup.connects, deployEnv, date);
 

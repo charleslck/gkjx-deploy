@@ -67,6 +67,7 @@ module.exports = {
 | --------   | :-----:  | :-----:  |:-----: |:-----: |
 | name      | 为配置项指定一个name名称   | String | - | 是 |
 | webDir    | 目标服务器上的部署目录   | String | - | 是 |
+| clearWebDir    | 是否清空部署目录后再部署，默认不清   | Boolean | false | 否 |
 | archiveDir   |    需要部署至服务器的本机文件夹    | String | - | 是 |
 | servers   |    需要部署服务器的配置列表    | Array | - | 是 |
 | servers-host   |    服务器公网IP地址    | String | - | 是 |

@@ -1,6 +1,6 @@
 {
   "name": "gkjx-deploy",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "deploy frontend projects",
   "bin": {
     "g-deploy": "bin/index.js"

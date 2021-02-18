@@ -10,6 +10,7 @@ module.exports = {
       // 上传文件
       try {
         for (const ssh of connects) {
+          console.log(deployEnv.webDir, command)
           await ssh.execCommand(command, { cwd: deployEnv.webDir }).then((result) => {
             if (result.stdout) {
               console.log(`输出日志: ${result.stdout}`);
